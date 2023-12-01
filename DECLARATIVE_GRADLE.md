@@ -26,3 +26,31 @@ You can then edit the [declarative settings file](./settings.gradle.something).
 * The available model is currently taken from the current Gradle API.
 * Enum properties such as `dependencyResolutionManagement.repositoriesMode` are currently unsupported.
 * Error reporting is not user friendly but displays informed messages.
+
+Supported APIs in `settings.gradle.something`:
+
+* `Settings`:
+    * `val rootProject: ProjectDescriptor`
+    * `include(projectPath: String)` (the `vararg` overload is not supported)
+    * `pluginManagement(pluginManagementSpec: PluginManagementSpec.() -> Unit)`
+        * (+ `val pluginManagement`)
+    * `dependencyResolutionManagement(dependencyResolutionConfiguration: DependencyResolutionManagement.() -> Unit)`
+        * (+ `val dependencyResolutionManagement`)
+    * `enableFeaturePreview(name: String)`
+
+* `ProjectDescriptor`:
+    * `var name: String`
+
+* `RepositoryHandler`:
+    * `gradlePluginPortal()`
+    * `mavenCentral()`
+    * `google()`
+
+* `PluginManagementSpec`:
+    * `repositories(repositoriesAction: RepositoriesHandler.() -> Unit)`
+        * (+ `val repositories`)
+    * `includeBuild(rootProject: String)` (the overload with the lambda is not supported)
+
+* `DependencyResolutionManagement`:
+    * `repositories(repositoriesAction: RepositoriesHandler.() -> Unit)`
+        * (+ `val repositories`)
