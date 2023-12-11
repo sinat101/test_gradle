@@ -15,19 +15,11 @@
  */
 
 plugins {
-    alias(libs.plugins.nowinandroid.android.feature)
-    alias(libs.plugins.nowinandroid.android.library.compose)
-    alias(libs.plugins.nowinandroid.android.library.jacoco)
-}
-
-android {
-    namespace = "com.google.samples.apps.nowinandroid.feature.search"
+    id("nowinandroid.build.feature.search")
 }
 
 dependencies {
-    implementation(projects.feature.bookmarks)
-    implementation(projects.feature.foryou)
-    implementation(projects.feature.interests)
-    implementation(libs.kotlinx.datetime)
+    implementation(project(":feature:bookmarks"))
+    implementation(project(":feature:foryou"))
+    implementation(project(":feature:interests"))
 }
-
