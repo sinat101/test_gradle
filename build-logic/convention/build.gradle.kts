@@ -101,5 +101,16 @@ gradlePlugin {
             id = "nowinandroid.jvm.library"
             implementationClass = "JvmLibraryConventionPlugin"
         }
+
+        // Build files extracted to plugins:
+
+        register("nowinandroidBuildFeatureBookmarks") {
+            id = "nowinandroid.build.feature.bookmarks"
+            implementationClass = "BuildFeatureBookmarks"
+        }
+        register("nowinandroidBuildFeatureSearch") {
+            id = "nowinandroid.build.feature.search"
+            implementationClass = "BuildFeatureSearch"
+        }
     }
 }
