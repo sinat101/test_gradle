@@ -20,6 +20,9 @@ import org.gradle.kotlin.dsl.getByType
  * limitations under the License.
  */
 
+/**
+ * Build logic for `:feature:search`.
+ */
 class BuildFeatureSearch : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {

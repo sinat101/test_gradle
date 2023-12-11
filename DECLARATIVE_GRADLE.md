@@ -71,8 +71,8 @@ In command line builds, check the result with:
 ./gradlew :feature:search:dependencyInsight --configuration prodDebugCompileClasspath --dependency feature
 ```
 
-Currently, only plugins and project dependencies are supported. Everything else should
-be moved to convention plugins.
+Currently, only plugins and project dependencies are supported. Everything else has been
+moved to convention plugins for now.
 
 The plugins and the rest of a build file are interpreted in two separate steps, similar to 
 the other DSLs.
