@@ -103,4 +103,5 @@ Supported APIs for project evaluation:
     * `fun compileOnly(dependency: ProjectDependency)`
     * `fun implementation(dependency: ProjectDependency)`
     * `fun testImplementation(dependency: ProjectDependency)`
+    * `fun androidTestImplementation(dependency: ProjectDependency)`
     * These configurations are hardcoded for now.
