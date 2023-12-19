@@ -3,7 +3,7 @@
 This is a fork of NowInAndroid set up to use
 
 * a branch snapshot of Gradle with the Restricted DSL prototype
-* a declarative settings file
+* declarative settings file and build files
 
 This is a first cut and this prototype will be amended with more use cases.
 
@@ -25,6 +25,8 @@ You can then edit the [declarative settings file](./settings.gradle.something).
 
 This demonstration includes [declarative settings files](#declarative-settings) and  
 [declarative build files](#declarative-build-files).
+The Gradle distribution also exports the [restricted DSL schemas](#restricted-dsl-schemas) that
+it uses to evaluate the files.
 
 * The available models are currently taken from the current Gradle API.
 * Error reporting is not user friendly but displays informed messages
@@ -105,3 +107,20 @@ Supported APIs for project evaluation:
     * `fun testImplementation(dependency: ProjectDependency)`
     * `fun androidTestImplementation(dependency: ProjectDependency)`
     * These configurations are hardcoded for now.
+
+### Restricted DSL schemas
+
+When the prototype evaluates declarative settings and build files, it constructs a schema used for 
+resolution and validation. 
+
+In the prototype, those schemas are based on Java types present on the Gradle classpath. 
+However, once the schemas are built, the evaluation engine can use them without
+any dependency on their original types. 
+
+The schemas are serializable, and the current prototype always writes them to 
+`.gradle/restricted-schema` during the build.
+
+There are three different schemas that you can find in those directories after a build:
+* `settings.something.schema` for the `settings.gradle.something` file,
+* `plugins.something.schema` for the plugins DSL in `build.gradle.something`, and
+* `project.something.schema` for the rest of `build.gradle.something`.
