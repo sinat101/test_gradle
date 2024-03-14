@@ -9,9 +9,10 @@ conventionalHiltJacocoAndroidLibrary {
     targets {
         debug {
             dependencies {
-                // TODO: Add test dependencies from project build script
+                // TODO: Convert from version catalog and add test dependencies from project build script (below)
+                // testImplementation(libs.kotlinx.coroutines.test)
+                // testImplementation(libs.turbine)
             }
         }
     }
 }
-

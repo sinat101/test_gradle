@@ -18,6 +18,7 @@ package org.gradle.api.experimental.android;
 
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
+import org.gradle.api.attributes.Attribute;
 
 // TODO: Additional android configuration in AndroidLibraryConventionPlugin
 // TODO: Lots of JaCoCo configuration (see AndroidLibraryJacocoConventionPlugin and Jacoco.kt)
@@ -65,5 +66,24 @@ public abstract class ConventionalAndroidHiltJacocoPlugin implements Plugin<Proj
     private void linkDslModelToPluginLazy(Project project, ConventionalAndroidHiltJacocoLibrary dslModel) {
         AndroidDSLSupport.linkDslModelToPluginLazy(project, dslModel);
         project.getConfigurations().getByName("ksp").getDependencies().addAllLater(dslModel.getDependencies().getKsp().getDependencies());
+            // TODO: This is super hacky - but otherwise these attributes are not set and project dependencies can't be resolved
+            project.getConfigurations().all(c -> {
+                if (c.getName().contains("debug") || c.getName().contains("Debug")) {
+                    c.getAttributes().attribute(Attribute.of("com.android.build.api.attributes.ProductFlavor:contentType", String.class), "demo");
+                    //> Cannot have two attributes with the same name but different types. This container already has an attribute named 'com.android.build.gradle.internal.attributes.VariantAttr' of type 'java.lang.String' and you are trying to store another one of type 'com.android.build.gradle.internal.attributes.VariantAttr'
+//                    if (c.getAttributes().keySet().stream().noneMatch(a -> a.getName().equals("com.android.build.gradle.internal.attributes.VariantAttr"))) {
+//                        c.getAttributes().attribute(Attribute.of("com.android.build.gradle.internal.attributes.VariantAttr", String.class), "demoDebug");
+//                    }
+                    c.getAttributes().attribute(Attribute.of("contentType", String.class), "demo");
+                }
+                if (c.getName().contains("release") || c.getName().contains("Release")) {
+                    c.getAttributes().attribute(Attribute.of("com.android.build.api.attributes.ProductFlavor:contentType", String.class), "prod");
+                    //> Cannot have two attributes with the same name but different types. This container already has an attribute named 'com.android.build.gradle.internal.attributes.VariantAttr' of type 'java.lang.String' and you are trying to store another one of type 'com.android.build.gradle.internal.attributes.VariantAttr'
+//                    if (c.getAttributes().keySet().stream().noneMatch(a -> a.getName().equals("com.android.build.gradle.internal.attributes.VariantAttr"))) {
+//                        c.getAttributes().attribute(Attribute.of("com.android.build.gradle.internal.attributes.VariantAttr", String.class), "prodDebug");
+//                    }
+                    c.getAttributes().attribute(Attribute.of("contentType", String.class), "prod");
+                }
+            });
     }
 }
