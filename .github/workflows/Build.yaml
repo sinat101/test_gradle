@@ -138,8 +138,10 @@ jobs:
           name: test-results
           path: '**/build/test-results/test*UnitTest/**.xml'
 
+# TODO: less linting required on this branch, full linting requires additional flavors
+#        run: ./now-in-android/gradlew :app:lintProdRelease :app-nia-catalog:lintRelease :lint:lint -p now-in-android
       - name: Check lint
-        run: ./now-in-android/gradlew :app:lintProdRelease :app-nia-catalog:lintRelease :lint:lint -p now-in-android
+        run: ./now-in-android/gradlew :lint:lint -p now-in-android
 
       - name: Upload lint reports (HTML)
         if: always()
@@ -148,8 +150,9 @@ jobs:
           name: lint-reports
           path: '**/build/reports/lint-results-*.html'
 
-      - name: Check badging
-        run: ./now-in-android/gradlew :app:checkProdReleaseBadging -p now-in-android
+# TODO: Skip badging until we have flavors working in the declarative app
+#      - name: Check badging
+#        run: ./now-in-android/gradlew :app:checkProdReleaseBadging -p now-in-android
 
   androidTest:
     runs-on: ubuntu-latest
