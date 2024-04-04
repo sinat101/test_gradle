@@ -16,6 +16,8 @@
 
 package org.gradle.api.experimental.android;
 
+import org.gradle.api.experimental.android.library.AndroidLibrary;
+import org.gradle.api.experimental.android.library.AndroidLibraryBuildTypes;
 import org.gradle.api.model.ObjectFactory;
 import org.gradle.declarative.dsl.model.annotations.Restricted;
 
@@ -24,11 +26,11 @@ import javax.inject.Inject;
 @Restricted
 public abstract class ConventionalAndroidHiltJacocoLibrary implements AndroidLibrary {
     private final KSPAndroidLibraryDependencies dependencies;
-    private final AndroidTargets targets;
+    private final AndroidLibraryBuildTypes buildTypes;
 
     @Inject
-    public ConventionalAndroidHiltJacocoLibrary(AndroidTargets targets, ObjectFactory objectFactory) {
-        this.targets = targets;
+    public ConventionalAndroidHiltJacocoLibrary(AndroidLibraryBuildTypes buildTypes, ObjectFactory objectFactory) {
+        this.buildTypes = buildTypes;
         this.dependencies = objectFactory.newInstance(KSPAndroidLibraryDependencies.class);
     }
 
@@ -36,8 +38,8 @@ public abstract class ConventionalAndroidHiltJacocoLibrary implements AndroidLib
      * Static targets extension block.
      */
     @Override
-    public AndroidTargets getTargets() {
-        return targets;
+    public AndroidLibraryBuildTypes getBuildTypes() {
+        return buildTypes;
     }
 
     /**

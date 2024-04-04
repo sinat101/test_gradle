@@ -6,7 +6,7 @@ plugins {
 conventionalHiltJacocoAndroidLibrary {
     namespace = "com.google.samples.apps.nowinandroid.core.domain"
 
-    targets {
+    buildTypes {
         debug {
             dependencies {
                 api(projects.core.data)

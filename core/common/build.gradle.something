@@ -6,7 +6,7 @@ plugins {
 conventionalHiltJacocoAndroidLibrary {
     namespace = "com.google.samples.apps.nowinandroid.core.common"
 
-    targets {
+    buildTypes {
         debug {
             dependencies {
                 // TODO: Convert from version catalog and add test dependencies from project build script (below)

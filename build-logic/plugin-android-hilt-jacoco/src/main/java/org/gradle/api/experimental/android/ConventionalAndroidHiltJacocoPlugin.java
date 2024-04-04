@@ -19,6 +19,9 @@ package org.gradle.api.experimental.android;
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
 import org.gradle.api.attributes.Attribute;
+import org.gradle.api.experimental.android.library.AndroidLibraryBuildType;
+import org.gradle.api.experimental.android.library.AndroidLibraryBuildTypes;
+import org.gradle.api.experimental.android.library.StandaloneAndroidLibraryPlugin;
 
 // TODO: Additional android configuration in AndroidLibraryConventionPlugin
 // TODO: Lots of JaCoCo configuration (see AndroidLibraryJacocoConventionPlugin and Jacoco.kt)
@@ -35,7 +38,7 @@ public abstract class ConventionalAndroidHiltJacocoPlugin implements Plugin<Proj
 
         // Register an afterEvaluate listener before we apply the Android plugin to ensure we can
         // run actions before Android does.
-        project.afterEvaluate(p -> AndroidDSLSupport.linkDslModelToPlugin(p, dslModel));
+        project.afterEvaluate(p -> StandaloneAndroidLibraryPlugin.linkDslModelToPlugin(p, dslModel));
 
         // Apply the official Android plugin.
         project.getPlugins().apply("com.android.library");
@@ -56,15 +59,13 @@ public abstract class ConventionalAndroidHiltJacocoPlugin implements Plugin<Proj
     }
 
     private ConventionalAndroidHiltJacocoLibrary createDslModel(Project project) {
-        AndroidTarget dslDebug = project.getObjects().newInstance(AndroidTarget.class, "debug");
-        AndroidTarget dslRelease = project.getObjects().newInstance(AndroidTarget.class, "release");
-        AndroidTargets dslTargets = project.getExtensions().create("targets", AndroidTargets.class, dslDebug, dslRelease);
+        AndroidLibraryBuildTypes dslTargets = project.getExtensions().create("targets", AndroidLibraryBuildTypes.class);
         return project.getExtensions().create("conventionalHiltJacocoAndroidLibrary", ConventionalAndroidHiltJacocoLibrary.class, dslTargets);
     }
 
     @SuppressWarnings("UnstableApiUsage")
     private void linkDslModelToPluginLazy(Project project, ConventionalAndroidHiltJacocoLibrary dslModel) {
-        AndroidDSLSupport.linkDslModelToPluginLazy(project, dslModel);
+        StandaloneAndroidLibraryPlugin.linkDslModelToPluginLazy(project, dslModel);
         project.getConfigurations().getByName("ksp").getDependencies().addAllLater(dslModel.getDependencies().getKsp().getDependencies());
             // TODO: This is super hacky - but otherwise these attributes are not set and project dependencies can't be resolved
             project.getConfigurations().all(c -> {

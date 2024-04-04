@@ -17,10 +17,11 @@
 package org.gradle.api.experimental.android;
 
 import org.gradle.api.artifacts.dsl.DependencyCollector;
+import org.gradle.api.experimental.common.LibraryDependencies;
 import org.gradle.declarative.dsl.model.annotations.Restricted;
 
 @SuppressWarnings("UnstableApiUsage")
 @Restricted
-public interface KSPAndroidLibraryDependencies extends AndroidLibraryDependencies {
+public interface KSPAndroidLibraryDependencies extends LibraryDependencies {
     DependencyCollector getKsp();
 }
