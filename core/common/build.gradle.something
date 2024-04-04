@@ -14,5 +14,9 @@ conventionalHiltJacocoAndroidLibrary {
                 // testImplementation(libs.turbine)
             }
         }
+
+        release {
+
+        }
     }
 }
