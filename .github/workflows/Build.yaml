@@ -112,16 +112,18 @@ jobs:
       - name: Run local tests
         if: always()
         run: ./now-in-android/gradlew testDemoDebug :lint:test -p now-in-android
-      # Replace task exclusions with `-Pandroidx.baselineprofile.skipgeneration` when
-      # https://android-review.googlesource.com/c/platform/frameworks/support/+/2602790 landed in a
-      # release build
-      - name: Build all build type and flavor permutations
-        run: ./now-in-android/gradlew :app:assemble :benchmarks:assemble
-          -x pixel6Api33ProdNonMinifiedReleaseAndroidTest
-          -x pixel6Api33DemoNonMinifiedReleaseAndroidTest
-          -x collectDemoNonMinifiedReleaseBaselineProfile
-          -x collectProdNonMinifiedReleaseBaselineProfile
-          -p now-in-android
+
+# TODO: This won't work until we have flavors working in the declarative app and actually create the variants that app is expecting
+#      # Replace task exclusions with `-Pandroidx.baselineprofile.skipgeneration` when
+#      # https://android-review.googlesource.com/c/platform/frameworks/support/+/2602790 landed in a
+#      # release build
+#      - name: Build all build type and flavor permutations
+#        run: ./now-in-android/gradlew :app:assemble :benchmarks:assemble
+#          -x pixel6Api33ProdNonMinifiedReleaseAndroidTest
+#          -x pixel6Api33DemoNonMinifiedReleaseAndroidTest
+#          -x collectDemoNonMinifiedReleaseBaselineProfile
+#          -x collectProdNonMinifiedReleaseBaselineProfile
+#          -p now-in-android
 
       - name: Upload build outputs (APKs)
         uses: actions/upload-artifact@v4

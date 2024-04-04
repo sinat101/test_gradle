@@ -48,6 +48,7 @@ jobs:
       - name: Accept Android licenses
         run: yes | "$ANDROID_HOME"/cmdline-tools/latest/bin/sdkmanager --licenses || true
 
+# TODO: This whole workflow won't work because of this step until we have flavors working in the declarative app and actually create demo-debug and demo-release variants
       - name: Build release variant including baseline profile generation
         run: ./gradlew :app:assembleDemoRelease
              -Pandroid.testInstrumentationRunnerArguments.androidx.benchmark.enabledRules=BaselineProfile
@@ -55,6 +56,7 @@ jobs:
              -Pandroid.experimental.testOptions.managedDevices.emulator.showKernelLogging=true
              -Pandroid.experimental.androidTest.numManagedDeviceShards=1
              -Pandroid.experimental.testOptions.managedDevices.maxConcurrentDevices=1
+
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
