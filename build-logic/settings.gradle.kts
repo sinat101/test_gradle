@@ -31,4 +31,4 @@ rootProject.name = "build-logic"
 include(":convention")
 include(":plugin-android-hilt-jacoco")
 
-includeBuild("../../declarative-prototypes/unified-prototype/unified-plugin")
+includeBuild("../../declarative-gradle/unified-prototype/unified-plugin")
