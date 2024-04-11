@@ -29,10 +29,13 @@ public abstract class ConventionalAndroidHiltJacocoLibrary implements AndroidLib
     private final AndroidLibraryBuildTypes buildTypes;
 
     @Inject
-    public ConventionalAndroidHiltJacocoLibrary(AndroidLibraryBuildTypes buildTypes, ObjectFactory objectFactory) {
-        this.buildTypes = buildTypes;
-        this.dependencies = objectFactory.newInstance(KSPAndroidLibraryDependencies.class);
+    public ConventionalAndroidHiltJacocoLibrary() {
+        this.buildTypes = getObjectFactory().newInstance(AndroidLibraryBuildTypes.class);
+        this.dependencies = getObjectFactory().newInstance(KSPAndroidLibraryDependencies.class);
     }
+
+    @Inject
+    public abstract ObjectFactory getObjectFactory();
 
     /**
      * Static targets extension block.

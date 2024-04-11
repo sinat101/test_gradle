@@ -19,18 +19,20 @@ package org.gradle.api.experimental.android;
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
 import org.gradle.api.attributes.Attribute;
-import org.gradle.api.experimental.android.library.AndroidLibraryBuildType;
-import org.gradle.api.experimental.android.library.AndroidLibraryBuildTypes;
 import org.gradle.api.experimental.android.library.StandaloneAndroidLibraryPlugin;
+import org.gradle.api.internal.plugins.software.SoftwareType;
 
 // TODO: Additional android configuration in AndroidLibraryConventionPlugin
 // TODO: Lots of JaCoCo configuration (see AndroidLibraryJacocoConventionPlugin and Jacoco.kt)
 // TODO: Apply and configure "nowinandroid.android.lint" plugin
 // TODO: Add Conventional test dependencies
 public abstract class ConventionalAndroidHiltJacocoPlugin implements Plugin<Project> {
+    @SoftwareType(name = "conventionalAndroidHiltJacocoLibrary", modelPublicType=ConventionalAndroidHiltJacocoLibrary.class)
+    abstract public ConventionalAndroidHiltJacocoLibrary getConventionalAndroidHiltJacocoLibrary();
+
     @Override
     public void apply(Project project) {
-        ConventionalAndroidHiltJacocoLibrary dslModel = createDslModel(project);
+        ConventionalAndroidHiltJacocoLibrary dslModel = getConventionalAndroidHiltJacocoLibrary();
 
         // Setup Android Library conventions
         dslModel.getJdkVersion().convention(17);
@@ -56,11 +58,6 @@ public abstract class ConventionalAndroidHiltJacocoPlugin implements Plugin<Proj
         project.getDependencies().add("implementation", "com.google.dagger:hilt-android:2.50");
 
         linkDslModelToPluginLazy(project, dslModel);
-    }
-
-    private ConventionalAndroidHiltJacocoLibrary createDslModel(Project project) {
-        AndroidLibraryBuildTypes dslTargets = project.getExtensions().create("targets", AndroidLibraryBuildTypes.class);
-        return project.getExtensions().create("conventionalHiltJacocoAndroidLibrary", ConventionalAndroidHiltJacocoLibrary.class, dslTargets);
     }
 
     @SuppressWarnings("UnstableApiUsage")

@@ -1,9 +1,4 @@
-// TODO: Will be applied via settings
-plugins {
-    id("org.gradle.experimental.android-hilt-jacoco")
-}
-
-conventionalHiltJacocoAndroidLibrary {
+conventionalAndroidHiltJacocoLibrary {
     namespace = "com.google.samples.apps.nowinandroid.core.common"
 
     buildTypes {
