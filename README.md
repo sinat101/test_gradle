@@ -14,7 +14,7 @@ nowinandroid/
 then run the following command in the `nowinandroid` directory to build the project:
 
 ```shell
-gw buildDemoDebug
+gw buildDemoDebug -x :app:hiltAggregateDepsDemoDebug
 ```
 
 ![Now in Android](docs/images/nia-splash.jpg "Now in Android")

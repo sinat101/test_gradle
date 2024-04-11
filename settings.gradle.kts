@@ -23,6 +23,10 @@ pluginManagement {
     }
 }
 
+plugins {
+    id("org.gradle.experimental.now-in-android-conventions")
+}
+
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {

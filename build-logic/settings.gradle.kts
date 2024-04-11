@@ -25,10 +25,10 @@ dependencyResolutionManagement {
         }
     }
 }
-
 rootProject.name = "build-logic"
 
 include(":convention")
+include(":plugin-now-in-android-conventions")
 include(":plugin-android-hilt-jacoco")
 
 includeBuild("../../declarative-gradle/unified-prototype/unified-plugin")

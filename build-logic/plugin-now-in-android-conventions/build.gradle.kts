@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 The Android Open Source Project
+ * Copyright 2024 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,15 +35,22 @@ tasks.withType<KotlinCompile>().configureEach {
 }
 
 dependencies {
-    implementation("org.gradle.experimental:plugin-android:0.1")
-    implementation("org.gradle.experimental:plugin-common:0.1")
+    implementation(project(":plugin-android-hilt-jacoco"))
+
+    // TODO: These were apply-falses at the build level previously,
+    // but now can't be added to the plugins block because of the error:
+    // The request for this plugin could not be satisfied because the plugin is already on the classpath with an unknown version, so compatibility cannot be checked.
+    // Adding them here to remember them
+    api("com.android.application:com.android.application.gradle.plugin:8.2.0")
+    api("com.android.library:com.android.library.gradle.plugin:8.2.0")
+    api("com.android.test:com.android.test.gradle.plugin:8.2.0")
 }
 
 gradlePlugin {
     plugins {
-        register("android-hilt-jacoco") {
-            id = "org.gradle.experimental.android-hilt-jacoco"
-            implementationClass = "org.gradle.api.experimental.android.ConventionalAndroidHiltJacocoPlugin"
+        register("now-in-android-conventions") {
+            id = "org.gradle.experimental.now-in-android-conventions"
+            implementationClass = "org.gradle.api.experimental.android.nowinandroid.NowInAndroidConventionsPlugin"
         }
     }
 }

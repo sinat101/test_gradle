@@ -31,11 +31,12 @@ buildscript {
 
 // Lists all plugins used throughout the project without applying them.
 plugins {
-    alias(libs.plugins.android.application) apply false
-    alias(libs.plugins.android.library) apply false
-    alias(libs.plugins.android.test) apply false
+// TODO: These are commented out because of The request for this plugin could not be satisfied because the plugin is already on the classpath with an unknown version, so compatibility cannot be checked.
+//    alias(libs.plugins.android.application) apply false
+//    alias(libs.plugins.android.library) apply false
+//    alias(libs.plugins.android.test) apply false
     alias(libs.plugins.baselineprofile) apply false
-    alias(libs.plugins.kotlin.jvm) apply false
+//    alias(libs.plugins.kotlin.jvm) apply false
     alias(libs.plugins.kotlin.serialization) apply false
     alias(libs.plugins.dependencyGuard) apply false
     alias(libs.plugins.firebase.crashlytics) apply false
