@@ -34,6 +34,11 @@ public abstract class ConventionalAndroidHiltJacocoPlugin implements Plugin<Proj
     public void apply(Project project) {
         ConventionalAndroidHiltJacocoLibrary dslModel = getConventionalAndroidHiltJacocoLibrary();
 
+        dslModel.getIncludeKotlinSerialization().convention(false);
+        if (dslModel.getIncludeKotlinSerialization().get()) {
+            project.getPluginManager().apply("kotlinx-serialization");
+        }
+
         // Setup Android Library conventions
         dslModel.getJdkVersion().convention(17);
         dslModel.getCompileSdk().convention(34);

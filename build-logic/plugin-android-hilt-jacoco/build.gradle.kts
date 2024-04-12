@@ -37,6 +37,7 @@ tasks.withType<KotlinCompile>().configureEach {
 dependencies {
     implementation("org.gradle.experimental:plugin-android:0.1")
     implementation("org.gradle.experimental:plugin-common:0.1")
+    implementation("org.jetbrains.kotlin.plugin.serialization:org.jetbrains.kotlin.plugin.serialization.gradle.plugin:1.9.21")
 }
 
 gradlePlugin {

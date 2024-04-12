@@ -19,6 +19,7 @@ package org.gradle.api.experimental.android;
 import org.gradle.api.experimental.android.library.AndroidLibrary;
 import org.gradle.api.experimental.android.library.AndroidLibraryBuildTypes;
 import org.gradle.api.model.ObjectFactory;
+import org.gradle.api.provider.Property;
 import org.gradle.declarative.dsl.model.annotations.Restricted;
 
 import javax.inject.Inject;
@@ -36,6 +37,9 @@ public abstract class ConventionalAndroidHiltJacocoLibrary implements AndroidLib
 
     @Inject
     public abstract ObjectFactory getObjectFactory();
+
+    @Restricted
+    public abstract Property<Boolean> getIncludeKotlinSerialization();
 
     /**
      * Static targets extension block.
