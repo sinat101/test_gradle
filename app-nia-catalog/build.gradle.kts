@@ -47,12 +47,11 @@ android {
         missingDimensionStrategy(FlavorDimension.contentType.name, NiaFlavor.demo.name)
     }
 
-// TODO: Fix packaging
-//    packaging {
-//        resources {
-//            excludes.add("/META-INF/{AL2.0,LGPL2.1}")
-//        }
-//    }
+    packaging {
+        resources {
+            excludes.add("/META-INF/{AL2.0,LGPL2.1}")
+        }
+    }
     namespace = "com.google.samples.apps.niacatalog"
 
     buildTypes {

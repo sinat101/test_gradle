@@ -24,7 +24,7 @@ plugins {
     id("jacoco")
     alias(libs.plugins.nowinandroid.android.application.firebase)
     id("com.google.android.gms.oss-licenses-plugin")
-    //alias(libs.plugins.baselineprofile)
+    alias(libs.plugins.baselineprofile)
     alias(libs.plugins.roborazzi)
 }
 
@@ -55,16 +55,15 @@ android {
             // TODO: Abstract the signing configuration to a separate file to avoid hardcoding this.
             signingConfig = signingConfigs.getByName("debug")
             // Ensure Baseline Profile is fresh for release builds.
-            //baselineProfile.automaticGenerationDuringBuild = true
+            baselineProfile.automaticGenerationDuringBuild = true
         }
     }
 
-// TODO: Fix packaging
-//    packaging {
-//        resources {
-//            excludes.add("/META-INF/{AL2.0,LGPL2.1}")
-//        }
-//    }
+    packaging {
+        resources {
+            excludes.add("/META-INF/{AL2.0,LGPL2.1}")
+        }
+    }
     testOptions {
         unitTests {
             isIncludeAndroidResources = true
@@ -121,14 +120,14 @@ dependencies {
     androidTestImplementation(libs.accompanist.testharness)
     androidTestImplementation(libs.hilt.android.testing)
 
-    //baselineProfile(projects.benchmarks)
+    baselineProfile(projects.benchmarks)
 }
 
-//baselineProfile {
-//    // Don't build on every iteration of a full assemble.
-//    // Instead enable generation directly for the release build variant.
-//    automaticGenerationDuringBuild = false
-//}
+baselineProfile {
+    // Don't build on every iteration of a full assemble.
+    // Instead enable generation directly for the release build variant.
+    automaticGenerationDuringBuild = false
+}
 
 dependencyGuard {
     configuration("prodReleaseRuntimeClasspath")
