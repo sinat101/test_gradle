@@ -19,16 +19,15 @@ package org.gradle.api.experimental.android.nowinandroid;
 import org.gradle.api.Plugin;
 import org.gradle.api.experimental.android.ConventionalAndroidHiltJacocoPlugin;
 import org.gradle.api.initialization.Settings;
-import org.gradle.api.internal.SettingsInternal;
-import org.gradle.plugin.software.internal.SoftwareTypeRegistry;
+import org.gradle.api.internal.plugins.software.RegistersSoftwareTypes;
 
+@SuppressWarnings("UnstableApiUsage") // For RegistersSoftwareTypes
+@RegistersSoftwareTypes({ConventionalAndroidHiltJacocoPlugin.class})
 public abstract class NowInAndroidConventionsPlugin implements Plugin<Settings> {
     @Override
     public void apply(Settings target) {
-
-        // TODO: To be replaced with static annotations once https://github.com/gradle/gradle/pull/28736 is merged
-        SettingsInternal settings = (SettingsInternal) target;
-        SoftwareTypeRegistry softwareTypeRegistry = settings.getServices().get(SoftwareTypeRegistry.class);
-        softwareTypeRegistry.register(ConventionalAndroidHiltJacocoPlugin.class);
+        // No-Op, but not removable, otherwise:
+        // > Could not generate a decorated class for type NowInAndroidConventionsPlugin.
+        //   > Cannot have abstract method Plugin.apply().
     }
 }

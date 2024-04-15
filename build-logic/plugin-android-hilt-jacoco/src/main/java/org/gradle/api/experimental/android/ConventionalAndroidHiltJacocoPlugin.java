@@ -27,6 +27,7 @@ import org.gradle.api.internal.plugins.software.SoftwareType;
 // TODO: Apply and configure "nowinandroid.android.lint" plugin
 // TODO: Add Conventional test dependencies
 public abstract class ConventionalAndroidHiltJacocoPlugin implements Plugin<Project> {
+    @SuppressWarnings("UnstableApiUsage") // For SoftwareType
     @SoftwareType(name = "conventionalAndroidHiltJacocoLibrary", modelPublicType=ConventionalAndroidHiltJacocoLibrary.class)
     abstract public ConventionalAndroidHiltJacocoLibrary getConventionalAndroidHiltJacocoLibrary();
 
