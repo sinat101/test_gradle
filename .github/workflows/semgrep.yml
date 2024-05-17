@@ -14,8 +14,8 @@ jobs:
     - uses: actions/checkout@v4
     - uses: actions/setup-java@v4
       with:
-        distribution: 'oracle' # See 'Supported distributions' for available options
-        java-version: '21'
+        distribution: 'zulu' # See 'Supported distributions' for available options
+        java-version: '17'
     - uses: gradle/actions/setup-gradle@v3
     - run: |
         gradle dependencies --write-locks
