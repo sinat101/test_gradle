@@ -16,7 +16,7 @@ jobs:
       with:
         distribution: 'temurin' # See 'Supported distributions' for available options
         java-version: '17'
-    - uses: gradle/actions/setup-gradle@v3
+    - uses: gradle/gradle-build-action@v2
     - run: |
         gradle dependencies --write-locks
         semgrep ci
