@@ -26,7 +26,7 @@ jobs:
           repository: 'gradle/declarative-gradle'
           path: 'declarative-gradle'
       - name: Validate Gradle Wrapper
-        uses: gradle/wrapper-validation-action@v2
+        uses: gradle/wrapper-validation-action@v3
 
       - name: Copy CI gradle.properties
         run: mkdir -p ~/.gradle ; cp .github/ci-gradle.properties ~/.gradle/gradle.properties
