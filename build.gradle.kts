@@ -41,22 +41,22 @@ buildscript {
 
 // Lists all plugins used throughout the project
 plugins {
-    alias(libs.plugins.android.application) apply false
-    alias(libs.plugins.android.library) apply false
-    alias(libs.plugins.android.test) apply false
-    alias(libs.plugins.baselineprofile) apply false
-    alias(libs.plugins.kotlin.jvm) apply false
-    alias(libs.plugins.kotlin.serialization) apply false
-    alias(libs.plugins.dependencyGuard) apply false
-    alias(libs.plugins.firebase.crashlytics) apply false
-    alias(libs.plugins.firebase.perf) apply false
-    alias(libs.plugins.gms) apply false
-    alias(libs.plugins.hilt) apply false
-    alias(libs.plugins.ksp) apply false
-    alias(libs.plugins.roborazzi) apply false
-    alias(libs.plugins.secrets) apply false
-    alias(libs.plugins.room) apply false
-    alias(libs.plugins.module.graph) apply true // Plugin applied to allow module graph generation
+    id(libs.plugins.android.application.get().pluginId) apply false
+    id(libs.plugins.android.library.get().pluginId) apply false
+    id(libs.plugins.android.test.get().pluginId) apply false
+    id(libs.plugins.baselineprofile.get().pluginId) apply false
+    id(libs.plugins.kotlin.jvm.get().pluginId) apply false
+    id(libs.plugins.kotlin.serialization.get().pluginId) apply false
+    id(libs.plugins.dependencyGuard.get().pluginId) apply false
+    id(libs.plugins.firebase.crashlytics.get().pluginId) apply false
+    id(libs.plugins.firebase.perf.get().pluginId) apply false
+    id(libs.plugins.gms.get().pluginId) apply false
+    id(libs.plugins.hilt.get().pluginId) apply false
+    id(libs.plugins.ksp.get().pluginId) apply false
+    id(libs.plugins.roborazzi.get().pluginId) apply false
+    id(libs.plugins.secrets.get().pluginId) apply false
+    id(libs.plugins.room.get().pluginId) apply false
+    id(libs.plugins.module.graph.get().pluginId) apply true // Plugin applied to allow module graph generation
 }
 
 // Task to print all the module paths in the project e.g. :core:data
