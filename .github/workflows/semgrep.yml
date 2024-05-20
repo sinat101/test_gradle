@@ -10,7 +10,7 @@ jobs:
     - name: Build lockfile
       run: gradle dependencies --write-locks 
     - name: Upload lockfile Artifact     
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: gradlelockfile
         path: gradle.lockfile
